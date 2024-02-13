@@ -3,13 +3,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
+  mode: 'development',
   entry: [
-    'react-hot-loader/patch',
-    './src/index.js'
+    './index.js'
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -19,7 +19,7 @@ const config = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         use: [
           'style-loader',
           'css-loader'
@@ -27,16 +27,29 @@ const config = {
       }
     ]
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      templateContent: ({ htmlWebpackPlugin }) => '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>' + htmlWebpackPlugin.options.title + '</title></head><body><div id=\"app\"></div></body></html>',
       filename: 'index.html',
     })
   ],
   devServer: {
-    'static': {
-      directory: './dist'
-    }
+    port: 8080,
+    static: {
+      publicPath: '/dist',
+      // directory: './dist'
+      directory: path.join(__dirname, 'dist')
+    }, 
+    client: {
+      logging: 'info',
+    },
+    proxy: {
+      'api': 'http://localhost:3000',
+      historyApiFallback: true, 
+    },
+    hot: true
   }
 };
 

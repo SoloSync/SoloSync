@@ -1,12 +1,14 @@
 import React from 'react';
+import {Routes, Route} from 'react-router-dom'
+import NavBar from './NavBar';
 
 function App() {
-    return(
-        <div>
+  return (
+    <div>
+      
 
-        </div>
-    )
-};
+    </div>
+  )
+}
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(element);
+export default App
