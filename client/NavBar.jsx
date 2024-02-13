@@ -1,38 +1,69 @@
 import * as React from 'react';
-import Box from '@mui/material/Box'
-import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
-import SpeedDialAction from '@mui/material/SpeedDialAction';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import Message from '@mui/icons-material/Message';
-import Notifications from '@mui/icons-material/Notifications';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 import Home from '@mui/icons-material/Home';
+import Notifications from '@mui/icons-material/Notifications';
+import Message from '@mui/icons-material/Message';
+import Logout from '@mui/icons-material/Logout';
+import Settings from '@mui/icons-material/Settings';
 
-function NavBar() {
-  const actions = [
-    {icon: <Home />, name: "Home"},
-    {icon: <Notifications />, name: "Notifications"},
-    {icon: <Message />, name: "Messages"},
-    {icon: <Logout />, name: "Logout"},
-    {icon: <Settings />, name: "Settings"}
-  ];
-  
+
+function NavBar() {  
   return (
-    <Box sx={{height:320, tranform: 'translateZ(0px)', flexGrow:1}}>
-      <SpeedDial
-        sx={{position: 'absolute', bottom: 16, right: 16}}
-        icon={<SpeedDialIcon/>}
-      >
-        {actions.map((action) => {
-          <SpeedDialAction  
-            key={action.name}
-            icon={action.icon}
-            tooltipTitle={action.name}
-          />
-        })}
-      </SpeedDial>
-    </Box>
+    <div id='navBarContainer'>
+      <Box sx={{width: '100%', maxWidth:'240px'}}>
+        <nav aria-label='main mailbox folders'>
+          <List >
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Home/>
+                </ListItemIcon>
+                <ListItemText>Home</ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Notifications/>
+                </ListItemIcon>
+                <ListItemText>Notifications</ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Message />
+                </ListItemIcon>
+                <ListItemText>Messages</ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Logout />
+                </ListItemIcon>
+                <ListItemText>Logout</ListItemText>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Settings />
+                </ListItemIcon>
+                <ListItemText>Settings</ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </nav>
+      </Box>
+
+    </div>
   )
 }
 
