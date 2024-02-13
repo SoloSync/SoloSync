@@ -20,11 +20,11 @@ module.exports = {
 };
 
 // Test the connection
-pool
-  .query('SELECT NOW()')
-  .then((res) => {
-    console.log('Connected to PostgreSQL');
-  })
-  .catch((err) => {
-    console.error('Error connecting to PostgreSQL:', err);
-  });
+// pool
+//   .query('SELECT NOW()')
+//   .then((res) => {
+//     console.log('Connected to PostgreSQL');
+//   })
+//   .catch((err) => {
+//     console.error('Error connecting to PostgreSQL:', err);
+//   });

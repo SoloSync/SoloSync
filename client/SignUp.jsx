@@ -57,10 +57,9 @@ function SignUp() {
     }
 
     return(
-        <div 
-        id='signUpPg'>
+        <div id='signUpPg'>
             <div id="signUpText"><br/><br/>
-                <h1> A way to find love, SoloSync </h1>
+                <h1> Where Solo Success Finds Its Beat </h1>
             </div> 
             <div className="message">
                 {errorMessage()}
