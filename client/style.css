@@ -116,3 +116,53 @@
   text-decoration: none;
   color: white;
 }
+
+
+/*
+Sign Up 
+*/
+
+
+#signUpPg {
+  background-image: url('https://webgradients.com/public/webgradients_png/013%20Heavy%20Rain.png');
+  background-size: cover;
+  background-position: center;
+  height:100vh;
+  margin: 0; 
+  padding: 0; 
+}
+
+#signUpText h1{
+  text-align: center;
+  font-size: 36px;
+}
+
+#text h6{
+  text-align: center;
+  font-size: 25px;
+}
+
+.signUpContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emailPWContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none; 
+  border: 2px solid blue(255, 255, 255, .2);
+  border-radius: 40px;
+}
+

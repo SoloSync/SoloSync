@@ -16,6 +16,13 @@ import {Link} from 'react-router-dom'
 
 
 function NavBar() {  
+
+  const [logout, setLogout] = useState(false);
+
+  
+
+
+
   return (
     <div id='navBarContainer'>
       <Box sx={{width: '100%', maxWidth:'240px'}}>
@@ -84,7 +91,6 @@ function NavBar() {
           </List>
         </nav>
       </Box>
-
     </div>
   )
 }
