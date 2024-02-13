@@ -1,46 +1,26 @@
-const express = require('express'); 
-const path = require('path');
+const express = require('express');
+const userRouter = require('./routers/user.js');
+const profileRouter = require('./routers/profile.js');
 
+const PORT = 3000;
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-// app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.status(200).sendFile(path.join(__dirname,'../index.html'));
-})
+app.use('/user', userRouter);
+app.use('/profile', profileRouter);
 
-
-
-
-
-
-
-
-
-
-
-
-// express global error handler
-
-const defaultObj = {
-    log: 'Express error handler caught unknown error',
-    status: 500, 
-    message: {err: 'An error occurred'}
-};
-
+//Global Error Handler
 app.use((err, req, res, next) => {
-    const errorObj = Object.assign({}, defaultObj, err);
-    console.log('ERROR:', errorObj.log);
-    const errorStatus = errorObj.status || 500; 
-    return res.status(errorStatus).json({status: errorStatus, data: errorObj.message});
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 500,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultErr, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
 });
 
-
-// start server on port 3000
-app.listen(PORT, () => {
-    console.log(`Sever is running on port ${PORT}`)
-});
-
-module.exports = app; 
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`))
+module.exports = app;
