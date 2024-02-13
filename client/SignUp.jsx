@@ -33,10 +33,11 @@ function SignUp() {
     const successMessage = () => {
         return(
             <div
+            id="text"
             className="success"
             style={{display: signUp ? "" : "none"}}
             > 
-            <h1> {email}, successfully registered for SoloSync! </h1>
+            <h6> {email}, successfully registered for SoloSync! </h6>
             
             </div>
         )
@@ -45,45 +46,52 @@ function SignUp() {
     const errorMessage = () => {
         return(
             <div
+            id="text"
             className="error"
             style={{display: error ? "" : "none"}}
             > 
-            <h1> Please enter all fields </h1>
+            <h6> Please enter all fields </h6>
             
             </div>
         )
     }
 
     return(
-        <div>
-            <div>
-                <h1> SoloSync SignUp Page </h1>
+        <div 
+        id='signUpPg'>
+            <div id="signUpText"><br/><br/>
+                <h1> A way to find love, SoloSync </h1>
             </div> 
             <div className="message">
                 {errorMessage()}
                 {successMessage()}
             </div>
-            <form>
-                <label className="label" placeholder="Email"> Email </label>
-                <input 
+            <div><br/><br/>
+
+                <div class='emailPWContainer'>
+                    <label className="label" placeholder="Email"> Email </label>
+                    <input 
                     onChange={handleEmail}
                     className="input"
                     value={email}
                     type="email"
-                />
+                    />
 
-                <label className="label" placeholder="Email"> Password </label>
-                <input 
+                </div><br/>
+
+                <div class='emailPWContainer'>
+                    <label className="label" placeholder="Email"> Password </label>
+                    <input 
                     onChange={handlePassword}
                     className="input"
                     value={password}
                     type="password"
-                />
-
-                <button onClick={handleSignUp} className="btn" type="signUp"> 
-                    SignUp
-                </button>
-            </form>
+                    />
+                </div><br/>
+                <div class='emailPWContainer'>
+                    <button onClick={handleSignUp} className="btn" type="signUp"> Submit </button>
+                </div>
+            </div>
         </div>
     )
 }

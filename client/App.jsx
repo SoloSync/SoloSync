@@ -7,7 +7,7 @@ import Homepage from './Homepage';
 
 function App() {
   return (
-    <SignUp />
+    <NavBar />
     // <Routes>
     //   <Route path='/' element={<Login />}/>
     //   <Route path='/Homepage' element={<Homepage />}/>

@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run dev",
     "dev": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "start:frontend": "webpack server --mode development",
