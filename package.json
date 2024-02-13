@@ -3,11 +3,11 @@
   "name": "solosync",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devstart": "npm run dev",
-    "start": "NODE_ENV=production node ./client/App",
+    "start": "NODE_ENV=production node ./client/App.jsx",
     "dev": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "start:frontend": "webpack-dev-server --mode development",
     "start:backend": "nodemon server/server.js",
