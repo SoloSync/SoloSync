@@ -1,12 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
-const config = {
+module.exports = {
   mode: 'development',
-  entry: [
-    './index.js'
-  ],
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
@@ -15,14 +13,28 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
       },
       {
-        test: /\.s?css$/,
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [ 'style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|ico)$/,
         use: [
-          'style-loader',
-          'css-loader'
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          }
         ]
       }
     ]
@@ -31,26 +43,24 @@ const config = {
     extensions: ['.js', '.jsx']
   },
   plugins: [
-    new HtmlWebpackPlugin({
+    new HTMLWebpackPlugin({
       filename: 'index.html',
     })
   ],
   devServer: {
-    port: 8080,
     static: {
-      publicPath: '/dist',
+      publicPath: '/',
       // directory: './dist'
       directory: path.join(__dirname, 'dist')
     }, 
-    client: {
-      logging: 'info',
-    },
-    proxy: {
-      'api': 'http://localhost:3000',
-      historyApiFallback: true, 
-    },
-    hot: true
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    proxy: [{
+      '/api/**': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      }
+    }],
+    historyApiFallback: true, 
+    // hot: true
   }
 };
-
-module.exports = config;
