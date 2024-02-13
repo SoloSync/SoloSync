@@ -6,32 +6,52 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
-  background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2F0a3d6MjVwYjhzOXF2djZkYWFocHc5MzFrZXByb2d1ZGFjZHZ2diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MQTF1uW0GTZoVsseXx/giphy.gif');
-  background-size: 100%;
+  align-items: center;
 }
 
+#loginTitle {
+  position: center;
+  font-size: 100px;
+  font-family:fantasy;
+  background-color: rgba(37, 150, 190, 0.8);
+  border-radius: 10px;
+  color: black;
+  box-shadow: 0px 0px 4px 4px white;
+}
+
+#loginTitle:hover {
+  cursor: pointer;
+}
+
+#signInTitle {
+  margin: 10px;
+}
 
 #loginCard{
-  border: 1px solid black;
+  border: 1px transparent black;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   justify-self: center;
-  width: 30rem;
-  height: 40rem;
+  width: 20rem;
+  height: 15rem;
   background-color: white;
   box-shadow: 0px 0px 4px 4px grey;
-  margin-bottom: 100px;
-  margin-right: 50px;
-  margin-top: 100px;
+  margin: 30rem;
+  padding: 20px;
 }
 
 #loginCardContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.loginInputs {
+  width: 15rem;
+  height: 2rem;
+  text-align: center;
 }
 
 #loginCardHeader{
@@ -54,9 +74,13 @@
   margin: 5px;
   border-radius: 20px;
   padding: 10px;
-  background-color: #809bce;
+  background-color: #2596be;
   color: white;
   border: none;
+}
+
+#signInBtn:hover {
+  cursor: pointer;
 }
 
 #signUpBtn {
@@ -67,12 +91,19 @@
   border: none;
 }
 
+#signUpBtn:hover {
+  cursor: pointer;
+}
+
 #signUpPart {
   margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #navBarContainer {
-  background-color: #809bce;
+  background-color: #2596be;
   width: 240px;
   height: 100vh;
   margin: 0;

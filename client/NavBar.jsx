@@ -7,6 +7,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import Home from '@mui/icons-material/Home';
+import Face from '@mui/icons-material/Face';
 import Notifications from '@mui/icons-material/Notifications';
 import Message from '@mui/icons-material/Message';
 import Logout from '@mui/icons-material/Logout';
@@ -27,6 +28,16 @@ function NavBar() {
                       <Home/>
                     </ListItemIcon>
                     <ListItemText>Home</ListItemText>
+                  </ListItemButton>
+              </ListItem>
+            </Link>
+            <Link to='/Profile' className='Links'>
+              <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon style={{color:'white'}}>
+                      <Face/>
+                    </ListItemIcon>
+                    <ListItemText>Profile</ListItemText>
                   </ListItemButton>
               </ListItem>
             </Link>
