@@ -14,6 +14,7 @@ function SignUp() {
         setSignUp(false);
     }
 
+
     const handlePassword = (e) => {
         setPassword(e.target.value);
         setSignUp(false);
@@ -63,7 +64,7 @@ function SignUp() {
                 {successMessage()}
             </div>
             <form>
-                <label className="label"> Email </label>
+                <label className="label" placeholder="Email"> Email </label>
                 <input 
                     onChange={handleEmail}
                     className="input"
@@ -71,7 +72,7 @@ function SignUp() {
                     type="email"
                 />
 
-                <label className="label"> Password </label>
+                <label className="label" placeholder="Email"> Password </label>
                 <input 
                     onChange={handlePassword}
                     className="input"
