@@ -1,12 +1,15 @@
 import React from 'react';
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route} from 'react-dom/client'
 import NavBar from './NavBar';
+import SignUp from './SignUp';
 
 function App() {
   return (
-    <div>
-      TEST
-    </div>
+    // <div> 
+    //   <div>TEST</div>
+    //   <Route exact path='SignUp' element={<SignUp />} />
+    // </div>
+    <SignUp />
   )
 }
 

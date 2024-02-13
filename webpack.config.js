@@ -44,7 +44,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      filename: 'index.html',
+      template: 'index.html',
     })
   ],
   devServer: {
@@ -61,6 +61,6 @@ module.exports = {
       }
     }],
     historyApiFallback: true, 
-    // hot: true
+    hot: true,
   }
 };
