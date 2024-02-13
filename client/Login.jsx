@@ -30,7 +30,7 @@ function Login() {
     <div id='loginPage'>
       <div id='loginTitle'>
         <h1>
-          Solo Sync Login
+          SoloSync Login
         </h1>
       </div>
       <div id='loginCard'>

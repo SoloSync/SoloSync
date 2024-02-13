@@ -12,6 +12,7 @@
 #loginTitle {
   display:flex;
   justify-content: start;
+  margin: 30px;
 }
 
 #loginCard{
@@ -70,5 +71,10 @@
   width: 240px;
   height: 100vh;
   margin: 0;
+  color: white;
+}
+
+.Links {
+  text-decoration: none;
   color: white;
 }
