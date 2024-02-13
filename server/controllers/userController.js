@@ -24,6 +24,10 @@ userController.deleteUser = (req, res, next) => {
   .catch(err => next(err))
 };
 
+userController.verifyUser = (req, res, next) => {
+  
+}
+
 userController.getUsers = (req, res, next) => {
   db.query('SELECT * FROM user_info')
     .then(data => {
