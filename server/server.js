@@ -5,6 +5,8 @@ const profileRouter = require('./routers/profile.js');
 const PORT = 3000;
 const app = express();
 
+app.use(express.json())
+
 app.use('/user', userRouter);
 app.use('/profile', profileRouter);
 

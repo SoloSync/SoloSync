@@ -1,24 +1,21 @@
 const express = require('express');
+const userController = require('../controllers/userController.js')
+const profileController = require('../controllers/profileController.js')
 
 const router = express.Router();
 
 //gets all of the profiles to send to frontend
-router.get('/', (req, res) => {
+router.get('/', userController.getUsers, (req, res) => {
   res.sendStatus(200);
 });
 
 //add profile info to about you table in database
-router.post('/', (req, res) => {
+router.post('/', profileController.createAboutInfo, (req, res) => {
   res.sendStatus(200);
 });
 
 //updates profile info in about you table
 router.patch('/', (req, res) => {
-  res.sendStatus(200);
-});
-
-//deletes profile info from
-router.delete('/', (req, res) => {
   res.sendStatus(200);
 });
 

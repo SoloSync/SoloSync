@@ -1,14 +1,15 @@
 const express = require('express');
+const userController = require('../controllers/userController.js')
 
 const router = express.Router();
 
 //creates new user
-router.post('/create', (req, res) => {
+router.post('/create', userController.createUser, (req, res) => {
   res.sendStatus(200);
 });
 
 //deletes current user
-router.delete('/delete', (req, res) => {
+router.delete('/delete', userController.deleteUser, (req, res) => {
   res.sendStatus(200)
 });
 
