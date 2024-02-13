@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   mode: 'development',
   entry: [
-    './index.js'
+    './client/index.js'
   ],
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -32,7 +32,8 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      //had to add id='root' into index.html, but webpack plug in HTML wasn't creating it so to do that we had to make an index.html in client folder to make the HTMLplugin make a template of it with the root id when we build the webpack
+      template: './client/index.html',
     })
   ],
   devServer: {

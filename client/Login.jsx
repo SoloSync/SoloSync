@@ -5,12 +5,25 @@ function Login() {
 
   }
   return (
-    <div style={{backgroundImage: `url("https://spectrumtransformation.com/wp-content/uploads/2018/06/connected.png")`}}>
-      <form action={handleSubmit}>
-        <input name='email' placeholder="Email"></input>
-        <input name='password' placeholder="Password"></input>
-        <button type='submit'>Submit</button>
-      </form>
+    <div id='loginPage'>
+      <h1>
+        Solo Sync Login
+      </h1>
+      <div>
+        <div id='loginCard'>
+          <form id='form'>
+            <div>
+              <input name='email' placeholder="Email"></input>
+            </div>
+            <div>
+              <input name='password' placeholder="Password"></input>
+            </div>
+            <div>
+              <button type='submit'>Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
