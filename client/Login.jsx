@@ -28,17 +28,12 @@ function Login() {
 
   return (
     <div id='loginPage'>
-      <div id='loginTitle'>
-        <h1>
-          SoloSync Login
-        </h1>
-      </div>
       <div id='loginCard'>
         <div id='loginCardContainer'>
           <div id='loginCardHeader'>
             <div>
               <h2>
-                Sign In
+                SoloSync Sign In
               </h2>
             </div>
             <div>
@@ -62,7 +57,10 @@ function Login() {
             </form>
             <hr></hr>
           </div>
-            <button id="signUpBtn">Sign Up</button>
+            <div id='signUpPart'>
+              <p>Don't have an account?</p>
+                <Link to='/SignUp'><button id="signUpBtn">Sign Up</button></Link>
+            </div>
         </div>
       </div>
     </div>

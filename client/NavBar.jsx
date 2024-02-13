@@ -20,7 +20,7 @@ function NavBar() {
       <Box sx={{width: '100%', maxWidth:'240px'}}>
         <nav aria-label='main mailbox folders'>
           <List id='List'>
-            <Link to='/Homepage' class='Links'>
+            <Link to='/Homepage' className='Links'>
               <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon style={{color:'white'}}>
@@ -30,7 +30,7 @@ function NavBar() {
                   </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Login' class='Links'>
+            <Link to='/Login' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>
@@ -40,7 +40,7 @@ function NavBar() {
                 </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Messages' class='Links'>
+            <Link to='/Messages' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>
@@ -50,7 +50,7 @@ function NavBar() {
                 </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Login' class='Links'>
+            <Link to='/Login' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>
@@ -60,7 +60,7 @@ function NavBar() {
                 </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Settings' class='Links'>
+            <Link to='/Settings' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>

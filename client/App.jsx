@@ -7,11 +7,11 @@ import Homepage from './Homepage';
 
 function App() {
   return (
-    <NavBar />
+    <SignUp />
     // <Routes>
-    //   <Route path='/Homepage' component={Homepage}/>
-    //   <Route path='/Login' component={Login}/>
-    //   <Route path='/SignUp' component={SignUp}/>
+    //   <Route path='/' element={<Login />}/>
+    //   <Route path='/Homepage' element={<Homepage />}/>
+    //   <Route path='/SignUp' element={<SignUp />}/>
     // </Routes>
   )
 }
