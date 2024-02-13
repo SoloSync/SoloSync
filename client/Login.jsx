@@ -7,7 +7,6 @@ import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
 import soloSync from './assets/SoloSyncLogo.png'
 import background from './assets/Background.png'
-import modal from './assets/Modal.png'
 
 function Login() {
 
@@ -35,7 +34,7 @@ function Login() {
   }
 
   const style = {
-    position: 'absolute',
+    position: 'relative',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -51,14 +50,13 @@ function Login() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div id='loginPage' style={{backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh', backgroundPosition: 'bottom -380px center'}}>
+    <div id='loginPage' style={{backgroundImage: `url(${background})`}}>
       <Typography>
-        <h1 id='loginTitle' onClick={handleOpen}>
+        <Button id='loginTitle' onClick={handleOpen} position='relative'>
           SoloSync
-        </h1>
+        </Button>
       </Typography>
-      <div>
-        <Button onClick={handleOpen} style={{position: 'fixed', bottom: '100px', right: '133px', fontSize: '25px', backgroundColor: '#2596be', color: 'white'}}>Login</Button>
+      <div style={{position:'relative', textAlign: 'center'}}>
         <Modal
           open={open}
           onClose={handleClose}
