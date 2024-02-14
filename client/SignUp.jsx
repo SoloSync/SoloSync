@@ -1,91 +1,66 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from "react";
 
 function SignUp() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
-    const [signUp, setSignUp] = useState(false);
-    const [error, setError] = useState(false);
+  const handleSignUp = async (e) => {
+    e.preventDefault();
 
+    try {
+      const response = await fetch("http://localhost:3000/user/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-        setSignUp(false);
+      if (!response.ok) {
+        throw new Error("Error signing up");
+      }
+
+      setSuccess(true);
+      setError(null);
+
+      // Redirect to the dashboard after successful sign-up
+      window.location.href = "/dashboard";
+    } catch (error) {
+      setError(error.message);
+      setSuccess(false);
     }
+  };
 
-
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-        setSignUp(false);
-    }
-
-    const handleSignUp = (e) => {
-        e.preventDefault();
-        if(email === "" || password === "") {
-            setError(true);
-        } else {
-            setSignUp(true);
-            setError(false);
-        }
-    }
-
-    const successMessage = () => {
-        return(
-            <div
-            className="success"
-            style={{display: signUp ? "" : "none"}}
-            > 
-            <h1> {email}, successfully registered for SoloSync! </h1>
-            
-            </div>
-        )
-    }
-
-    const errorMessage = () => {
-        return(
-            <div
-            className="error"
-            style={{display: error ? "" : "none"}}
-            > 
-            <h1> Please enter all fields </h1>
-            
-            </div>
-        )
-    }
-
-    return(
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSignUp}>
         <div>
-            <div>
-                <h1> SoloSync SignUp Page </h1>
-            </div> 
-            <div className="message">
-                {errorMessage()}
-                {successMessage()}
-            </div>
-            <form>
-                <label className="label" placeholder="Email"> Email </label>
-                <input 
-                    onChange={handleEmail}
-                    className="input"
-                    value={email}
-                    type="email"
-                />
-
-                <label className="label" placeholder="Email"> Password </label>
-                <input 
-                    onChange={handlePassword}
-                    className="input"
-                    value={password}
-                    type="password"
-                />
-
-                <button onClick={handleSignUp} className="btn" type="signUp"> 
-                    SignUp
-                </button>
-            </form>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
-    )
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {success && <p style={{ color: "green" }}>Signed up successfully!</p>}
+    </div>
+  );
 }
 
 export default SignUp;

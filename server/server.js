@@ -1,11 +1,13 @@
 const express = require('express');
 const userRouter = require('./routers/user.js');
 const profileRouter = require('./routers/profile.js');
+const cors = require('cors');
 
 const PORT = 3000;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/user', userRouter);
 app.use('/profile', profileRouter);
