@@ -6,7 +6,7 @@ function Notification() {
 
     return(
         <div>
-
+            <NavBar />
         </div>
     )
 }

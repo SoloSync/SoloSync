@@ -17,12 +17,6 @@ import {Link} from 'react-router-dom'
 
 function NavBar() {  
 
-  const [logout, setLogout] = useState(false);
-
-  
-
-
-
   return (
     <div id='navBarContainer'>
       <Box sx={{width: '100%', maxWidth:'240px'}}>
@@ -48,13 +42,13 @@ function NavBar() {
                   </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Login' className='Links'>
+            <Link to='/Notification' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>
                     <Notifications/>
                   </ListItemIcon>
-                  <ListItemText>Notifications</ListItemText>
+                  <ListItemText>Notification</ListItemText>
                 </ListItemButton>
               </ListItem>
             </Link>

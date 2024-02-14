@@ -6,7 +6,7 @@ function Messages() {
 
     return(
         <div>
-
+            <NavBar />
         </div>
     )
 }
