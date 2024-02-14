@@ -39,21 +39,23 @@ router.post("/upload", upload.single("picture"), async (req, res) => {
   }
 });
 
-router.get('/image/:id', async (req, res) => {
+router.get("/image/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT photo FROM picture WHERE id = $1', [id]);
+    const result = await pool.query("SELECT photo FROM picture WHERE id = $1", [
+      id,
+    ]);
 
     if (result.rows.length > 0) {
       const img = result.rows[0].image;
-      res.setHeader('Content-Type', 'image/jpeg');
+      res.setHeader("Content-Type", "image/jpeg");
       res.send(img);
     } else {
-      res.status(404).json({ error: 'No image found with this ID' });
+      res.status(404).json({ error: "No image found with this ID" });
     }
   } catch (error) {
-    console.error('Error fetching image:', error);
-    res.status(500).json({ error: 'Error fetching image' });
+    console.error("Error fetching image:", error);
+    res.status(500).json({ error: "Error fetching image" });
   }
 });
 
