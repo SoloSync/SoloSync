@@ -43,13 +43,11 @@ function Login() {
   const handleEmail = (e) => {
     info.email = e.target.value
     setInfo(info)
-    console.log(info)
   }
 
   const handlePassword = (e) => {
     info.password = e.target.value
     setInfo(info)
-    console.log(info)
   }
 
   const style = {

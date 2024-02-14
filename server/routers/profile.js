@@ -6,7 +6,7 @@ const router = express.Router();
 
 //gets all of the profiles to send to frontend
 router.get('/', userController.getUsers, (req, res) => {
-  res.sendStatus(200);
+  res.status(200).json({users: res.locals.users});
 });
 
 //add profile info to about you table in database

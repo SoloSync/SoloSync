@@ -16,7 +16,7 @@ userController.createUser = (req, res, next) => {
 userController.deleteUser = (req, res, next) => {
   const id = req.body.id
   console.log(id)
-  db.query(`DELETE FROM user_info WHERE user_id=${id}`)
+  db.query(`DELETE FROM user_info WHERE userId=${id}`)
   .then(() => {
     console.log('deleted user')
     next();
@@ -26,7 +26,7 @@ userController.deleteUser = (req, res, next) => {
 
 userController.verifyUser = (req, res, next) => {
   const { email, password } = req.body
-  db.query('SELECT user_id FROM user_info WHERE email=$1 AND password=$2', [email, password])
+  db.query('SELECT userId FROM user_info WHERE email=$1 AND password=$2', [email, password])
     .then(data => {
       if (data.rows.length > 0) {
         res.locals.verification = true;
@@ -42,7 +42,7 @@ userController.verifyUser = (req, res, next) => {
 userController.getUsers = (req, res, next) => {
   db.query('SELECT * FROM user_info')
     .then(data => {
-      console.log(data.rows);
+      res.locals.users = data.rows;
       next();
     })
     .catch(err => next(err));
@@ -59,8 +59,8 @@ userController.getUserInfo = (req, res, next) => {
 };
 
 userController.updateUser = (req, res, next) => {
-  const { email, password, name, user_id } = req.body
-  db.query('UPDATE user_info SET email=$1, password=$2, name=$3 WHERE user_id=$4', [email, password, name, user_id])
+  const { email, password, name, userId } = req.body
+  db.query('UPDATE user_info SET email=$1, password=$2, name=$3 WHERE userId=$4', [email, password, name, userId])
     .then(() => {
       console.log('Updated user')
       next()

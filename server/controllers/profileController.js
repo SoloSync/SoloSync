@@ -3,10 +3,10 @@ const db = require('../models/models.js')
 profileController = {};
 
 profileController.createAboutInfo = (req, res, next) => {
-  const { name, fav_lang, looking_for, role, user_id} = req.body;
-  db.query('INSERT INTO about_you (name, fav_lang, looking_for, role) VALUES ($1, $2, $3, $4) RETURNING id', [name, fav_lang, looking_for, role])
+  const { name, favLang, lookingFor, role, userId} = req.body;
+  db.query('INSERT INTO about_you (name, favLang, lookingFor, role) VALUES ($1, $2, $3, $4) RETURNING id', [name, favLang, lookingFor, role])
     .then((id) => {
-      db.query(`UPDATE user_info SET about_id=${id.rows[0].id} WHERE user_id=${user_id}`)
+      db.query(`UPDATE user_info SET aboutId=${id.rows[0].id} WHERE userId=${userId}`)
         .then(() => {
           console.log('Inserted about you info');
           next();
@@ -17,7 +17,8 @@ profileController.createAboutInfo = (req, res, next) => {
 }
 
 profileController.getAboutInfo = (req, res, next) => {
-  db.query('SELECT * FROM about_you WHERE id=$1', [req.body.aboutYouIid])
+  console.log(req.body)
+  db.query('SELECT * FROM about_you WHERE id=$1', [req.body.aboutYouId])
     .then(data => {
       res.locals.about_you = data.rows[0]
       next()
@@ -26,8 +27,8 @@ profileController.getAboutInfo = (req, res, next) => {
 }
 
 profileController.updateAboutInfo = (req, res, next) => {
-  const { name, fav_lang, looking_for, role, about_id } = req.body;
-  db.query('UPDATE about_you SET name=$1 fav_lang=$2, looking_for=$3, role=$4 WHERE id=$5', [name, fav_lang, looking_for, role, about_id])
+  const { name, favLang, lookingFor, role, aboutId } = req.body;
+  db.query('UPDATE about_you SET name=$1 favLang=$2, lookingFor=$3, role=$4 WHERE id=$5', [name, favLang, lookingFor, role, aboutId])
     .then(() => {
       console.log('Updated about you info')
       next()

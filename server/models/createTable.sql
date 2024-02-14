@@ -5,8 +5,8 @@
 CREATE TABLE about_you (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    fav_lang VARCHAR(255),
-    looking_for VARCHAR(255),
+    favLang VARCHAR(255),
+    lookingFor VARCHAR(255),
     role VARCHAR(255)
 );
 
@@ -25,10 +25,10 @@ CREATE TABLE picture (
 
 -- Creating user table
 CREATE TABLE user_info (
-    user_id SERIAL PRIMARY KEY,
+    userId SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    about_id INT REFERENCES about_you(id),
+    aboutId INT REFERENCES about_you(id),
     seen INT REFERENCES seen(id),
-    picture_id INT REFERENCES picture(id)
+    pictureId INT REFERENCES picture(id)
 );
