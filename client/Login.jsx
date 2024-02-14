@@ -5,37 +5,55 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
-import soloSync from './assets/SoloSyncLogo.png'
 import background from './assets/Background.png'
-import modal from './assets/Modal.png'
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [info, setInfo] = useState({
+    email:'',
+    password:''
+  });
 
-  const handleSubmit = async () => {
-    try {
-      fetch()
-        .then((response) => {
-          console.log(response)
-        })
+  const navigation = useNavigate();
+
+  const handleSubmit = async (info) => {
+    try{
+    const response = await fetch('http://localhost:3000/user/verify', {
+      method: 'POST',
+      body: JSON.stringify(info),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (!response.ok) {
+      throw new Error('Failed to verify user')
     }
-    catch {
-      console.log(error)
+
+    const data = await response.json();
+    if (data.verification === true) {
+      navigation('/homepage')
+    }
+  }
+    catch(error) {
+      console.error(error, 'verify user failed')
     }
   }
 
   const handleEmail = (e) => {
-    setEmail = e.value.target
+    info.email = e.target.value
+    setInfo(info)
+    console.log(info)
   }
 
   const handlePassword = (e) => {
-    setPassword = e.value.target
+    info.password = e.target.value
+    setInfo(info)
+    console.log(info)
   }
 
   const style = {
-    position: 'absolute',
+    position: 'relative',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -51,14 +69,13 @@ function Login() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div id='loginPage' style={{backgroundImage: `url(${background})`, backgroundSize: 'cover', height: '100vh', backgroundPosition: 'bottom -380px center'}}>
+    <div id='loginPage' style={{backgroundImage: `url(${background})`}}>
       <Typography>
-        <h1 id='loginTitle' onClick={handleOpen}>
+        <Button id='loginTitle' onClick={handleOpen} position='relative'>
           SoloSync
-        </h1>
+        </Button>
       </Typography>
-      <div>
-        <Button onClick={handleOpen} style={{position: 'fixed', bottom: '100px', right: '133px', fontSize: '25px', backgroundColor: '#2596be', color: 'white'}}>Login</Button>
+      <div style={{position:'relative', textAlign: 'center'}}>
         <Modal
           open={open}
           onClose={handleClose}
@@ -69,20 +86,20 @@ function Login() {
           <Box sx={style}>
           <div id='loginCardContainer'>
             <h1 style={{fontFamily:'fantasy'}} id='signInTitle'>Sign Into SoloSync</h1>
-            <form id='form' onSubmit={handleSubmit}>
+            <div id='form'>
               <div>
-                <input className='loginInputs' name='email' placeholder="Email" onChange={handleEmail}></input>
+                <input type='text' className='loginInputs' name='email' placeholder="Email" onChange={handleEmail}></input>
               </div>
               <div>
-                <input className='loginInputs' name='password' placeholder="Password" onChange={handlePassword}></input>
+                <input type='password' className='loginInputs' name='password' placeholder="Password" onChange={handlePassword}></input>
               </div>
               <div>
-                <Link>Forgot Password?</Link>
+                <Link to='/signUp'>Forgot Password?</Link>
               </div>
               <div id='signUpPart'>
-                <button id='signInBtn' type='submit'>Sign In</button>
+                <button id='signInBtn' type='submit' onClick={()=> handleSubmit(info)}>Sign In</button>
               </div>
-            </form>
+            </div>
             <hr></hr>
         </div>
           <div id='signUpPart'>
@@ -93,41 +110,6 @@ function Login() {
         </Modal>
       </div>
     </div>
-    // <div id='loginPage' style={{backgroundImage: `url(${background})`, backgroundSize: 'cover', backgroundPosition: 'left 5px center', height: `100vh`}}>
-    //   <div id='loginCard'>
-    //     <div id='loginCardContainer'>
-    //       <div id='loginCardHeader'>
-    //         <div>
-    //           <h2>
-    //             SoloSync Sign In
-    //           </h2>
-    //         </div>
-    
-    //       </div>
-    //       <div>
-    //         <form id='form' onSubmit={handleSubmit}>
-    //           <div>
-    //             <input name='email' placeholder="Email" onChange={handleEmail}></input>
-    //           </div>
-    //           <div>
-    //             <input name='password' placeholder="Password" onChange={handlePassword}></input>
-    //           </div>
-    //           <div>
-    //             <Link>Forgot Password?</Link>
-    //           </div>
-    //           <div>
-    //             <button id='signInBtn' type='submit'>Sign In</button>
-    //           </div>
-    //         </form>
-    //         <hr></hr>
-    //       </div>
-    //         <div id='signUpPart'>
-    //           <p>Don't have an account?</p>
-    //             <Link to='/SignUp'><button id="signUpBtn">Sign Up</button></Link>
-    //         </div>
-    //     </div>
-    //   </div>
-    // </div>
   )
 }
 

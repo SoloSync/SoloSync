@@ -31,7 +31,7 @@ function NavBar() {
                   </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Profile' className='Links'>
+            <Link to='/userProfile' className='Links'>
               <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon style={{color:'white'}}>
@@ -51,7 +51,7 @@ function NavBar() {
                 </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Messages' className='Links'>
+            <Link to='/messages' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>
@@ -61,7 +61,7 @@ function NavBar() {
                 </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Login' className='Links'>
+            <Link to='/' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>
@@ -84,7 +84,6 @@ function NavBar() {
           </List>
         </nav>
       </Box>
-
     </div>
   )
 }

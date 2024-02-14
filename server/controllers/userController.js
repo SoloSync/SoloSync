@@ -30,6 +30,7 @@ userController.verifyUser = (req, res, next) => {
     .then(data => {
       if (data.rows.length > 0) {
         res.locals.verification = true;
+
       }
       else {
         res.locals.verification = false;
