@@ -15,8 +15,8 @@ router.delete('/delete', userController.deleteUser, (req, res) => {
   res.sendStatus(200)
 });
 
-router.post('/verify', userController.verifyUser, userController.getUserInfo, profileController.getAboutInfo, (req, res) => {
-  res.status(200).json({verification: res.locals.verification, userInfo: res.locals.user_info, aboutYou: res.locals.about_you})
+router.post('/verify', userController.verifyUser, userController.getUserInfo, (req, res) => {
+  res.status(200).json({verification: res.locals.verification, userInfo: res.locals.user_info})
 });
 
 //updates user info
