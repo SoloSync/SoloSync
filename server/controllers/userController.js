@@ -25,11 +25,13 @@ userController.deleteUser = (req, res, next) => {
 };
 
 userController.verifyUser = (req, res, next) => {
-  const { email, password } = req.body.user
+  const { email, password } = req.body
+  console.log('this is email', email)
   db.query('SELECT user_id FROM user_info WHERE email=$1 AND password=$2', [email, password])
     .then(data => {
       if (data.rows.length > 0) {
         res.locals.verification = true;
+
       }
       else {
         res.locals.verification = false;

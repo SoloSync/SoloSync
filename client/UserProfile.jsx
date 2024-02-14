@@ -74,55 +74,55 @@ function UserProfile() {
             </div>
 
             <div id="userHobbies">
+                <label>Hobbies: </label>
                 <div >
-                    <label>Hobbies: </label>
-                    <input
+                    <textarea
                     type='text'
                     id='hobbies'
                     name='hobbies'
                     value={userInfo.hobbies}
                     onChange={userName}
-                    ></input>
+                    ></textarea>
                 </div>
             </div>
 
             <div id="userFavTech">
+                 <label>Fav. Tech: </label>
                 <div >
-                    <label>Fav. Tech: </label>
-                    <input
+                    <textarea
                     type='text'
                     id='favTech'
                     name='favTech'
                     value={userInfo.favTech}
                     onChange={userName}
-                    ></input>
+                    ></textarea>
                 </div>
             </div>
 
             <div id="userTechGoals">
+                <label>Tech Goals: </label>
                 <div >
-                    <label>Tech Goals: </label>
-                    <input
+                    <textarea
                     type='text'
                     id='techGoals'
                     name='techGoals'
                     value={userInfo.techGoals}
                     onChange={userName}
-                    ></input>
+                    ></textarea>
                 </div>
             </div>
 
             <div id="userAboutMe">
+                <label>About Me: </label>
                 <div>
-                    <label>About Me: </label>
-                    <input
+                    <textarea
                     className='textarea'
                     type='text'
                     id='aboutMe'
                     name='aboutMe'
                     value={userInfo.aboutMe}
                     onChange={userName}
-                    ></input>
+                    ></textarea>
                 </div>
             </div>
 

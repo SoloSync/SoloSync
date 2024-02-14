@@ -7,6 +7,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-position-y: -20rem;
 }
 
 #loginTitle {
@@ -224,7 +226,7 @@ Profile
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 74%;
+  bottom: 71%;
   left: 60%; 
   font-size: 15px;
   font-family:fantasy;
@@ -238,7 +240,7 @@ Profile
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 68%;
+  bottom: 62%;
   left: 60%; 
   font-size: 15px;
   font-family:fantasy;
@@ -252,7 +254,7 @@ Profile
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 62%;
+  bottom: 53%;
   left: 60%; 
   font-size: 15px;
   font-family:fantasy;
