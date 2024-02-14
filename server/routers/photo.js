@@ -47,7 +47,7 @@ router.get("/image/:id", async (req, res) => {
     ]);
 
     if (result.rows.length > 0) {
-      const img = result.rows[0].image;
+      const img = result.rows[0].photo;
       res.setHeader("Content-Type", "image/jpeg");
       res.send(img);
     } else {
