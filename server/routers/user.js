@@ -1,15 +1,12 @@
 const express = require('express');
 const userController = require('../controllers/userController.js');
-const cors = require('cors')
 
 
 const router = express.Router();
 
-router.use(cors())
-
 //creates new user
 router.post('/create', userController.createUser, (req, res) => {
-  res.sendStatus(200);
+  res.sendStatus(200).json({ message: 'User created' });
 });
 
 //deletes current user

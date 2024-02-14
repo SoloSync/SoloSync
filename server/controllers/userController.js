@@ -3,9 +3,9 @@ const db = require('../models/models.js')
 userController = {};
 
 userController.createUser = (req, res, next) => {
-  const {email, password, name} = req.body.data
-  console.log(email, password, name)
-  db.query('INSERT INTO user_info (email, password, name) VALUES ($1, $2, $3)', [email, password, name])
+  const {email, password} = req.body
+  console.log(email, password)
+  db.query('INSERT INTO user_info (email, password) VALUES ($1, $2)', [email, password])
     .then(() => {
       console.log('executed query')
       next();
@@ -30,12 +30,11 @@ userController.verifyUser = (req, res, next) => {
   db.query('SELECT user_id FROM user_info WHERE email=$1 AND password=$2', [email, password])
     .then(data => {
       if (data.rows.length > 0) {
-        console.log(data.rows.length)
         res.locals.verification = true;
+
       }
       else {
         res.locals.verification = false;
-        console.log(res.locals.verification)
       }
       next()
     })

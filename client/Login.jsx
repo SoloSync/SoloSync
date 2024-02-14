@@ -19,27 +19,26 @@ function Login() {
   const navigation = useNavigate();
 
   const handleSubmit = async (info) => {
-    fetch('http://localhost:3000/user/verify', {
+    try{
+    const response = await fetch('http://localhost:3000/user/verify', {
       method: 'POST',
       body: JSON.stringify(info),
       headers: {
         'Content-Type': 'application/json'
       }
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Failed to verify user')
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.verification == true) {
-          navigation('/Homepage')
-        } 
-      })
-      .catch((error) => {
-        console.log(error, 'in verifying user')
-      })
+    if (!response.ok) {
+      throw new Error('Failed to verify user')
+    }
+    
+    const data = await response.json();
+    if (data.verification === true) {
+      navigation('/homepage')
+    }
+  }
+    catch(error) {
+      console.error(error, 'verify user failed')
+    }
   }
 
   const handleEmail = (e) => {
@@ -88,7 +87,7 @@ function Login() {
           <Box sx={style}>
           <div id='loginCardContainer'>
             <h1 style={{fontFamily:'fantasy'}} id='signInTitle'>Sign Into SoloSync</h1>
-            <form id='form'>
+            <div id='form'>
               <div>
                 <input type='text' className='loginInputs' name='email' placeholder="Email" onChange={handleEmail}></input>
               </div>
@@ -96,12 +95,12 @@ function Login() {
                 <input type='password' className='loginInputs' name='password' placeholder="Password" onChange={handlePassword}></input>
               </div>
               <div>
-                <Link>Forgot Password?</Link>
+                <Link to='/signUp'>Forgot Password?</Link>
               </div>
               <div id='signUpPart'>
                 <button id='signInBtn' type='submit' onClick={()=> handleSubmit(info)}>Sign In</button>
               </div>
-            </form>
+            </div>
             <hr></hr>
         </div>
           <div id='signUpPart'>
