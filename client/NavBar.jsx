@@ -41,13 +41,13 @@ function NavBar() {
                   </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Login' className='Links'>
+            <Link to='/Notification' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>
                     <Notifications/>
                   </ListItemIcon>
-                  <ListItemText>Notifications</ListItemText>
+                  <ListItemText>Notification</ListItemText>
                 </ListItemButton>
               </ListItem>
             </Link>
