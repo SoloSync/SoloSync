@@ -3,7 +3,7 @@ const db = require('../models/models.js')
 userController = {};
 
 userController.createUser = (req, res, next) => {
-  const {email, password} = req.body.data
+  const {email, password} = req.body
   console.log(email, password)
   db.query('INSERT INTO user_info (email, password) VALUES ($1, $2)', [email, password])
     .then(() => {
