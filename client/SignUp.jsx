@@ -25,8 +25,8 @@ function SignUp() {
       setSuccess(true);
       setError(null);
 
-      // Redirect to the dashboard after successful sign-up
-      window.location.href = "/dashboard";
+      // Redirect to the homepage after successful sign-up
+      window.location.href = "/Homepage";
     } catch (error) {
       setError(error.message);
       setSuccess(false);

@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post("/", upload.single("picture"), async (req, res) => {
+router.post("/upload", upload.single("picture"), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: "No file uploaded" });
@@ -36,6 +36,24 @@ router.post("/", upload.single("picture"), async (req, res) => {
   } catch (error) {
     console.error("Error uploading picture:", error);
     res.status(500).json({ error: "Error uploading picture" });
+  }
+});
+
+router.get('/image/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query('SELECT photo FROM picture WHERE id = $1', [id]);
+
+    if (result.rows.length > 0) {
+      const img = result.rows[0].image;
+      res.setHeader('Content-Type', 'image/jpeg');
+      res.send(img);
+    } else {
+      res.status(404).json({ error: 'No image found with this ID' });
+    }
+  } catch (error) {
+    console.error('Error fetching image:', error);
+    res.status(500).json({ error: 'Error fetching image' });
   }
 });
 
