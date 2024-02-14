@@ -194,11 +194,25 @@ Profile
   color: black;
   box-shadow: 0px 0px 4px 4px white;
 }
-#userLocation{
+#userFavLang{
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 80%;
+  bottom: 43%;
+  right: 40%; 
+  font-size: 15px;
+  font-family:fantasy;
+  background-color: rgba(134, 200, 244, 0.8);
+  border-radius: 10px;
+  color: black;
+  box-shadow: 0px 0px 4px 4px white;
+}
+
+#userLookingFor{
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 70%;
   left: 60%; 
   font-size: 15px;
   font-family:fantasy;
@@ -208,68 +222,12 @@ Profile
   box-shadow: 0px 0px 4px 4px white;
 }
 
-#userLocation{
+#userRole{
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 80%;
-  left: 60%; 
-  font-size: 15px;
-  font-family:fantasy;
-  background-color: rgba(134, 200, 244, 0.8);
-  border-radius: 10px;
-  color: black;
-  box-shadow: 0px 0px 4px 4px white;
-}
-
-#userHobbies{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 71%;
-  left: 60%; 
-  font-size: 15px;
-  font-family:fantasy;
-  background-color: rgba(134, 200, 244, 0.8);
-  border-radius: 10px;
-  color: black;
-  box-shadow: 0px 0px 4px 4px white;
-}
-
-#userFavTech{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 62%;
-  left: 60%; 
-  font-size: 15px;
-  font-family:fantasy;
-  background-color: rgba(134, 200, 244, 0.8);
-  border-radius: 10px;
-  color: black;
-  box-shadow: 0px 0px 4px 4px white;
-}
-
-#userTechGoals{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 53%;
-  left: 60%; 
-  font-size: 15px;
-  font-family:fantasy;
-  background-color: rgba(134, 200, 244, 0.8);
-  border-radius: 10px;
-  color: black;
-  box-shadow: 0px 0px 4px 4px white;
-}
-
-#userAboutMe{
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 48%;
-  right: 15%; 
+  bottom: 30%;
+  left: 35%; 
   font-size: 15px;
   font-family:fantasy;
   background-color: rgba(134, 200, 244, 0.8);

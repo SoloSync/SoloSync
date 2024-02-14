@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NavBar from './NavBar';
 // react-avatar allows users to upload profile images
 import Avatar from 'react-avatar';
@@ -9,19 +9,42 @@ import AvatarEditor from 'react-avatar-editor';
 function UserProfile() {
     const [userInfo, setUserInfo] = useState({
         name: '',
-        location: '',
-        hobbies: '',
-        aboutMe: '',
-        favTech: '',
-        techGoals: '',
+        fav_lang: '',
+        looking_for: '',
+        role: '',
+        user_id: '',
     });
-    
-    const userName = (e) => {
+
+    const handleChange = (e) => {
         const { name, value } = e.target; 
         setUserInfo(prevState => ({
-            ...prevState, 
-            [name]: value,
-        }))
+       ...prevState, 
+       [name]: value,
+       }))
+    }
+    
+    const handleSubmit = async (e) => {
+        try{
+
+            const {name, fav_lang, looking_for, role, user_id} = userInfo;
+
+            const createProfile = await fetch("http://localhost:3000/", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, fav_lang, looking_for, role, user_id }),
+              });
+
+            if(!createProfile.ok) {
+                console.log('Error creating profile:', error);
+                throw new Error("Error creating profile");
+            }
+
+
+        } catch(error) {
+            throw new Error("Profile is not completed");
+        }
     };
 
 
@@ -55,73 +78,46 @@ function UserProfile() {
                     type='text'
                     name='name'
                     value={userInfo.firstName}
-                    onChange={userName}
+                    onChange={handleChange }
                     ></input>
                 </div>
             </div>
 
-            <div id="userLocation">
+            <div id="userFavLang">
                 <div >
-                    <label>Location: </label>
-                    <input
-                    type='text'
-                    id='location'
-                    name='location'
-                    value={userInfo.location}
-                    onChange={userName}
-                    ></input>
-                </div>
-            </div>
-
-            <div id="userHobbies">
-                <label>Hobbies: </label>
-                <div >
+                    <label>Fav. Lang: </label>
                     <textarea
                     type='text'
-                    id='hobbies'
-                    name='hobbies'
-                    value={userInfo.hobbies}
-                    onChange={userName}
+                    id='fav_lang'
+                    name='fav_lang'
+                    value={userInfo.fav_lang}
+                    onChange={handleChange }
                     ></textarea>
                 </div>
             </div>
 
-            <div id="userFavTech">
-                 <label>Fav. Tech: </label>
+            <div id="userLookingFor">
+                <label>Looking For: </label>
                 <div >
                     <textarea
                     type='text'
-                    id='favTech'
-                    name='favTech'
-                    value={userInfo.favTech}
-                    onChange={userName}
+                    id='looking_for'
+                    name='looking_for'
+                    value={userInfo.looking_for}
+                    onChange={handleChange }
                     ></textarea>
                 </div>
             </div>
 
-            <div id="userTechGoals">
-                <label>Tech Goals: </label>
+            <div id="userRole">
+                 <label>Role: </label>
                 <div >
                     <textarea
                     type='text'
-                    id='techGoals'
-                    name='techGoals'
-                    value={userInfo.techGoals}
-                    onChange={userName}
-                    ></textarea>
-                </div>
-            </div>
-
-            <div id="userAboutMe">
-                <label>About Me: </label>
-                <div>
-                    <textarea
-                    className='textarea'
-                    type='text'
-                    id='aboutMe'
-                    name='aboutMe'
-                    value={userInfo.aboutMe}
-                    onChange={userName}
+                    id='role'
+                    name='role'
+                    value={userInfo.role}
+                    onChange={handleChange }
                     ></textarea>
                 </div>
             </div>
