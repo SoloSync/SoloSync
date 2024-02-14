@@ -3,9 +3,9 @@ const db = require('../models/models.js')
 userController = {};
 
 userController.createUser = (req, res, next) => {
-  const {email, password, name} = req.body.data
-  console.log(email, password, name)
-  db.query('INSERT INTO user_info (email, password, name) VALUES ($1, $2, $3)', [email, password, name])
+  const {email, password} = req.body.data
+  console.log(email, password)
+  db.query('INSERT INTO user_info (email, password) VALUES ($1, $2)', [email, password])
     .then(() => {
       console.log('executed query')
       next();
