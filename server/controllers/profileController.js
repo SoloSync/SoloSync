@@ -3,7 +3,7 @@ const db = require('../models/models.js')
 profileController = {};
 
 profileController.createAboutInfo = (req, res, next) => {
-  const { name, fav_lang, looking_for, role, user_id} = req.body.info
+  const { name, fav_lang, looking_for, role, user_id} = req.body;
   db.query('INSERT INTO about_you (name, fav_lang, looking_for, role) VALUES ($1, $2, $3, $4) RETURNING id', [name, fav_lang, looking_for, role])
     .then((id) => {
       db.query(`UPDATE user_info SET about_id=${id.rows[0].id} WHERE user_id=${user_id}`)
