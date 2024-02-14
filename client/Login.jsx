@@ -7,32 +7,51 @@ import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
 import soloSync from './assets/SoloSyncLogo.png'
 import background from './assets/Background.png'
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [info, setInfo] = useState({
+    email:'',
+    password:''
+  });
 
-  const handleSubmit = async () => {
-    try {
-      fetch()
-        .then((response) => {
-          console.log(response)
-        })
-    }
-    catch {
-      console.log(error)
-    }
+  const navigation = useNavigate();
+
+  const handleSubmit = async (info) => {
+    fetch('http://localhost:3000/user/verify', {
+      method: 'POST',
+      body: JSON.stringify(info),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to verify user')
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.verification == true) {
+          navigation('/Homepage')
+        } 
+      })
+      .catch((error) => {
+        console.log(error, 'in verifying user')
+      })
   }
 
   const handleEmail = (e) => {
-    setEmail(e.target.value)
-    console.log(e.target.value)
+    info.email = e.target.value
+    setInfo(info)
+    console.log(info)
   }
 
   const handlePassword = (e) => {
-    setPassword(e.target.value)
-    console.log(e.target.value)
+    info.password = e.target.value
+    setInfo(info)
+    console.log(info)
   }
 
   const style = {
@@ -69,7 +88,7 @@ function Login() {
           <Box sx={style}>
           <div id='loginCardContainer'>
             <h1 style={{fontFamily:'fantasy'}} id='signInTitle'>Sign Into SoloSync</h1>
-            <form id='form' onSubmit={handleSubmit}>
+            <form id='form'>
               <div>
                 <input type='text' className='loginInputs' name='email' placeholder="Email" onChange={handleEmail}></input>
               </div>
@@ -80,7 +99,7 @@ function Login() {
                 <Link>Forgot Password?</Link>
               </div>
               <div id='signUpPart'>
-                <button id='signInBtn' type='submit'>Sign In</button>
+                <button id='signInBtn' type='submit' onClick={()=> handleSubmit(info)}>Sign In</button>
               </div>
             </form>
             <hr></hr>
@@ -93,41 +112,6 @@ function Login() {
         </Modal>
       </div>
     </div>
-    // <div id='loginPage' style={{backgroundImage: `url(${background})`, backgroundSize: 'cover', backgroundPosition: 'left 5px center', height: `100vh`}}>
-    //   <div id='loginCard'>
-    //     <div id='loginCardContainer'>
-    //       <div id='loginCardHeader'>
-    //         <div>
-    //           <h2>
-    //             SoloSync Sign In
-    //           </h2>
-    //         </div>
-    
-    //       </div>
-    //       <div>
-    //         <form id='form' onSubmit={handleSubmit}>
-    //           <div>
-    //             <input name='email' placeholder="Email" onChange={handleEmail}></input>
-    //           </div>
-    //           <div>
-    //             <input name='password' placeholder="Password" onChange={handlePassword}></input>
-    //           </div>
-    //           <div>
-    //             <Link>Forgot Password?</Link>
-    //           </div>
-    //           <div>
-    //             <button id='signInBtn' type='submit'>Sign In</button>
-    //           </div>
-    //         </form>
-    //         <hr></hr>
-    //       </div>
-    //         <div id='signUpPart'>
-    //           <p>Don't have an account?</p>
-    //             <Link to='/SignUp'><button id="signUpBtn">Sign Up</button></Link>
-    //         </div>
-    //     </div>
-    //   </div>
-    // </div>
   )
 }
 

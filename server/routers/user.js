@@ -1,7 +1,11 @@
 const express = require('express');
 const userController = require('../controllers/userController.js');
+const cors = require('cors')
+
 
 const router = express.Router();
+
+router.use(cors())
 
 //creates new user
 router.post('/create', userController.createUser, (req, res) => {

@@ -10,10 +10,10 @@ import UserProfile from './UserProfile'
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Login />}/>
-      <Route path='/Homepage' element={<Homepage />}/>
-      <Route path='/SignUp' element={<SignUp />}/>
-      <Route path='/UserProfile' element={<UserProfile />}/>
+      <Route exact path='/' element={<Login />}/>
+      <Route exact path='/Homepage' element={<Homepage />}/>
+      <Route exact path='/SignUp' element={<SignUp />}/>
+      <Route exact path='/UserProfile' element={<UserProfile />}/>
     </Routes>
   )
 }
