@@ -5,9 +5,23 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [signUp, setSignUp] = useState(false);
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
+  const handleSignUp = async (e) => {  
+    e.preventDefault(); 
+    
+    if(email === "" || password === "") {
+      setError(true);
+    } else {
+      setSignUp(true);
+      setError(false);
+    }
+
+    // setError(null);
+    const handlePassword = (e) => {
+      setPassword(e.target.value);
+      setSignUp(false);
+    }
 
     try {
       const response = await fetch("http://localhost:3000/user/create", {
@@ -23,44 +37,98 @@ function SignUp() {
       }
 
       setSuccess(true);
-      setError(null);
+      // setError(null);
 
       // Redirect to the dashboard after successful sign-up
-      window.location.href = "/Homepage";
+      window.location.href = "/Login";
     } catch (error) {
       setError(error.message);
       setSuccess(false);
     }
   };
 
-  return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSignUp}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+  // const handlePassword = (e) => {
+  //   setPassword(e.target.value);
+  //   setSignUp(false);
+  // }
+
+    // const handleSignUp = (e) => {
+    //     e.preventDefault();
+    //     if(email === "" || password === "") {
+    //         setError(true);
+    //     } else {
+    //         setSignUp(true);
+    //         setError(false);
+    //     }
+    // }
+
+    const successMessage = () => {
+        return(
+            <div
+            id="text"
+            className="success"
+            style={{display: signUp ? "" : "none"}}
+            > 
+            <h6> {email}, successfully registered for SoloSync! </h6>
+            
+            </div>
+        )
+    }
+
+    const errorMessage = () => {
+        return(
+            <div
+            id="text"
+            className="error"
+            style={{display: error ? "" : "none"}}
+            > 
+            <h6> Please enter all fields </h6>
+            </div>
+        )
+    }
+
+    return(
+        <div id='signUpPg'>
+
+            <div id="signUpText"><br/><br/>
+                <h1> Where Solo Success Finds Its Beat </h1>
+            </div>
+
+            <div className="message">
+                {errorMessage()}
+                {successMessage()}
+            </div>
+
+            <div><br/><br/>
+                <div className='emailPWContainer'>
+                  <label className="label" placeholder="Email"> Email </label>
+                  <input 
+                    type="email"
+                    value={email}
+                    // onChange={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+
+                </div><br/>
+
+                <div className='emailPWContainer'>
+                    <label className="label" placeholder="Email"> Password </label>
+                    <input 
+                    // onChange={handlePassword}
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    />
+                </div><br/>
+
+                <div className='emailPWContainer'>
+                    <button onClick={handleSignUp} className="btn" type="signUp"> Submit </button>
+                </div>
+          </div>
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>Signed up successfully!</p>}
-    </div>
-  );
+      )
 }
 
-export default SignUp;
+export default SignUp
