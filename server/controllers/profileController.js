@@ -17,7 +17,7 @@ profileController.createAboutInfo = (req, res, next) => {
 }
 
 profileController.getAboutInfo = (req, res, next) => {
-  db.query('SELECT * FROM about_you WHERE id=$1', [res.locals.user_info.about_id])
+  db.query('SELECT * FROM about_you WHERE id=$1', [req.body.aboutYouIid])
     .then(data => {
       res.locals.about_you = data.rows[0]
       next()
