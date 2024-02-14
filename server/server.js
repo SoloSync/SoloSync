@@ -1,6 +1,7 @@
 const express = require('express');
 const userRouter = require('./routers/user.js');
 const profileRouter = require('./routers/profile.js');
+const uploadRouter = require('./routers/upload.js');
 const cors = require('cors');
 
 const PORT = 3000;
@@ -11,6 +12,7 @@ app.use(cors());
 
 app.use('/user', userRouter);
 app.use('/profile', profileRouter);
+app.use('/upload', uploadRouter);
 
 //Global Error Handler
 app.use((err, req, res, next) => {
