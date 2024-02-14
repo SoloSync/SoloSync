@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/userController.js');
+const profileController = require('../controllers/profileController.js');
 
 const router = express.Router();
 
@@ -13,8 +14,8 @@ router.delete('/delete', userController.deleteUser, (req, res) => {
   res.sendStatus(200)
 });
 
-router.post('/verify', userController.verifyUser, (req, res) => {
-  res.status(200).json({verification: res.locals.verification})
+router.post('/verify', userController.verifyUser, userController.getUserInfo, profileController.getAboutInfo, (req, res) => {
+  res.status(200).json({verification: res.locals.verification, userInfo: res.locals.user_info, aboutYou: res.locals.about_you})
 });
 
 //updates user info

@@ -16,6 +16,15 @@ profileController.createAboutInfo = (req, res, next) => {
     .catch(err => next(err))
 }
 
+profileController.getAboutInfo = (req, res, next) => {
+  db.query('SELECT * FROM about_you WHERE id=$1', [res.locals.user_info.about_id])
+    .then(data => {
+      res.locals.about_you = data.rows[0]
+      next()
+    })
+    .catch(err => next(err))
+}
+
 profileController.updateAboutInfo = (req, res, next) => {
   const { fav_lang, looking_for, role, about_id } = req.body;
   db.query('UPDATE about_you SET fav_lang=$1, looking_for=$2, role=$3 WHERE id=$4', [fav_lang, looking_for, role, about_id])
