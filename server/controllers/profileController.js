@@ -17,10 +17,11 @@ profileController.createAboutInfo = (req, res, next) => {
 }
 
 profileController.updateAboutInfo = (req, res, next) => {
-  const user_id = req.body;
-  db.query(`DELETE FROM about_you WHERE id=${id}`)
+  const { fav_lang, looking_for, role, about_id } = req.body;
+  db.query('UPDATE about_you SET fav_lang=$1, looking_for=$2, role=$3 WHERE id=$4', [fav_lang, looking_for, role, about_id])
     .then(() => {
-      console.log('Deleted about you info')
+      console.log('Updated about you info')
+      next()
     })
 }
 

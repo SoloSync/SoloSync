@@ -15,7 +15,7 @@ router.post('/', profileController.createAboutInfo, (req, res) => {
 });
 
 //updates profile info in about you table
-router.patch('/', (req, res) => {
+router.patch('/', profileController.updateAboutInfo, (req, res) => {
   res.sendStatus(200);
 });
 

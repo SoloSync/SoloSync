@@ -13,12 +13,12 @@ router.delete('/delete', userController.deleteUser, (req, res) => {
   res.sendStatus(200)
 });
 
-router.post('/verify', (req, res) => {
-  res.status(200).json({verification: true})
+router.post('/verify', userController.verifyUser, (req, res) => {
+  res.status(200).json({verification: res.locals.verification})
 });
 
 //updates user info
-router.patch('/update', (req, res) => {
+router.patch('/update', userController.updateUser, (req, res) => {
   res.sendStatus(200);
 });
 
