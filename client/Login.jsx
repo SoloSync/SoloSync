@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
-import soloSync from './assets/SoloSyncLogo.png'
 import background from './assets/Background.png'
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +29,7 @@ function Login() {
     if (!response.ok) {
       throw new Error('Failed to verify user')
     }
-    
+
     const data = await response.json();
     if (data.verification === true) {
       navigation('/homepage')

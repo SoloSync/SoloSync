@@ -31,7 +31,7 @@ function NavBar() {
                   </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Profile' className='Links'>
+            <Link to='/userProfile' className='Links'>
               <ListItem disablePadding>
                   <ListItemButton>
                     <ListItemIcon style={{color:'white'}}>
