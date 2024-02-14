@@ -6,6 +6,7 @@ import Login from './Login';
 import SignUp from './SignUp';
 import Homepage from './Homepage';
 import UserProfile from './UserProfile'
+import Messages from './Messages'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path='/homepage' element={<Homepage />}/>
       <Route exact path='/signUp' element={<SignUp />}/>
       <Route exact path='/userProfile' element={<UserProfile />}/>
+      <Route exact path='/messages' element={<Messages />}/>
     </Routes>
   )
 }

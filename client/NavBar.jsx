@@ -51,7 +51,7 @@ function NavBar() {
                 </ListItemButton>
               </ListItem>
             </Link>
-            <Link to='/Messages' className='Links'>
+            <Link to='/messages' className='Links'>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon style={{color:'white'}}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import NavBar from './NavBar'
 import profilePic from './assets/JaimeProfile.png'
 import Check from '@mui/icons-material/Check'
@@ -7,6 +7,25 @@ import IconButton from '@mui/material/IconButton';
 
 
 function Homepage() {
+
+  useEffect(() => {
+    async function fetchData() {
+      try{
+        const response = await fetch('http://localhost:3000/profile/')
+        if (!response.ok) {
+          throw new Error ('error in grabbing profiles')
+        }
+        const data = await response.json();
+        console.log(data)
+        console.log('hi')
+      }
+      catch (error) {
+        console.error('error in the useEffect getting profiles')
+      }
+    }
+    fetchData();
+  },[])
+
   return (
     <div id='homepageContainer'>
       <NavBar/>
