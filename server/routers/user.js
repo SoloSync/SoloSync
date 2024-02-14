@@ -1,5 +1,5 @@
 const express = require('express');
-const userController = require('../controllers/userController.js')
+const userController = require('../controllers/userController.js');
 
 const router = express.Router();
 
@@ -13,8 +13,12 @@ router.delete('/delete', userController.deleteUser, (req, res) => {
   res.sendStatus(200)
 });
 
+router.post('/verify', userController.verifyUser, (req, res) => {
+  res.status(200).json({verification: res.locals.verification})
+});
+
 //updates user info
-router.patch('/update', (req, res) => {
+router.patch('/update', userController.updateUser, (req, res) => {
   res.sendStatus(200);
 });
 
