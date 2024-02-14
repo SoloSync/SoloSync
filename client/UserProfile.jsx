@@ -9,23 +9,28 @@ import AvatarEditor from 'react-avatar-editor';
 function UserProfile() {
     const [userInfo, setUserInfo] = useState({
         name: '',
-        hobbie: '',
+        location: '',
+        hobbies: '',
+        aboutMe: '',
+        favTech: '',
+        techGoals: '',
     });
-
+    
     const userName = (e) => {
         const { name, value } = e.target; 
         setUserInfo(prevState => ({
             ...prevState, 
             [name]: value,
-            [hobbie]: value,
         }))
     };
 
+
     const [uploadImage, setUploadImage] = useState(null);
+    // const [saveClicked, setSavedClicked] = useState(false);
+
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if(file) {
-            const reader = new FileReader();
             setUploadImage(file);
         }
     }
@@ -50,10 +55,77 @@ function UserProfile() {
                     type='text'
                     name='name'
                     value={userInfo.firstName}
-                    onchange={userName}
+                    onChange={userName}
                     ></input>
                 </div>
             </div>
+
+            <div id="userLocation">
+                <div >
+                    <label>Location: </label>
+                    <input
+                    type='text'
+                    id='location'
+                    name='location'
+                    value={userInfo.location}
+                    onChange={userName}
+                    ></input>
+                </div>
+            </div>
+
+            <div id="userHobbies">
+                <div >
+                    <label>Hobbies: </label>
+                    <input
+                    type='text'
+                    id='hobbies'
+                    name='hobbies'
+                    value={userInfo.hobbies}
+                    onChange={userName}
+                    ></input>
+                </div>
+            </div>
+
+            <div id="userFavTech">
+                <div >
+                    <label>Fav. Tech: </label>
+                    <input
+                    type='text'
+                    id='favTech'
+                    name='favTech'
+                    value={userInfo.favTech}
+                    onChange={userName}
+                    ></input>
+                </div>
+            </div>
+
+            <div id="userTechGoals">
+                <div >
+                    <label>Tech Goals: </label>
+                    <input
+                    type='text'
+                    id='techGoals'
+                    name='techGoals'
+                    value={userInfo.techGoals}
+                    onChange={userName}
+                    ></input>
+                </div>
+            </div>
+
+            <div id="userAboutMe">
+                <div>
+                    <label>About Me: </label>
+                    <input
+                    className='textarea'
+                    type='text'
+                    id='aboutMe'
+                    name='aboutMe'
+                    value={userInfo.aboutMe}
+                    onChange={userName}
+                    ></input>
+                </div>
+            </div>
+
             <div id="avatarEdit">
                 <input type="file" onChange={handleImageUpload} />
             </div>
