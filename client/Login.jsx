@@ -26,11 +26,13 @@ function Login() {
   }
 
   const handleEmail = (e) => {
-    setEmail = e.value.target
+    setEmail(e.target.value)
+    console.log(e.target.value)
   }
 
   const handlePassword = (e) => {
-    setPassword = e.value.target
+    setPassword(e.target.value)
+    console.log(e.target.value)
   }
 
   const style = {
@@ -69,10 +71,10 @@ function Login() {
             <h1 style={{fontFamily:'fantasy'}} id='signInTitle'>Sign Into SoloSync</h1>
             <form id='form' onSubmit={handleSubmit}>
               <div>
-                <input className='loginInputs' name='email' placeholder="Email" onChange={handleEmail}></input>
+                <input type='text' className='loginInputs' name='email' placeholder="Email" onChange={handleEmail}></input>
               </div>
               <div>
-                <input className='loginInputs' name='password' placeholder="Password" onChange={handlePassword}></input>
+                <input type='password' className='loginInputs' name='password' placeholder="Password" onChange={handlePassword}></input>
               </div>
               <div>
                 <Link>Forgot Password?</Link>

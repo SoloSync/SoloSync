@@ -5,13 +5,15 @@ import NavBar from './NavBar';
 import Login from './Login';
 import SignUp from './SignUp';
 import Homepage from './Homepage';
+import UserProfile from './UserProfile'
 
 function App() {
   return (
-    <Routes path='/' element={<Login />}>
+    <Routes>
       <Route path='/' element={<Login />}/>
       <Route path='/Homepage' element={<Homepage />}/>
       <Route path='/SignUp' element={<SignUp />}/>
+      <Route path='/UserProfile' element={<UserProfile />}/>
     </Routes>
   )
 }
