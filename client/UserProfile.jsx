@@ -7,6 +7,7 @@ import Avatar from 'react-avatar';
 import AvatarEditor from 'react-avatar-editor';
 
 function UserProfile() {
+
     const [userInfo, setUserInfo] = useState({
         name: '',
         fav_lang: '',
@@ -15,20 +16,23 @@ function UserProfile() {
         user_id: '',
     });
 
+    const [saveInfo, setSaveInfo] = useState(null)
+
     const handleChange = (e) => {
         const { name, value } = e.target; 
         setUserInfo(prevState => ({
        ...prevState, 
        [name]: value,
-       }))
+       }));
     }
     
     const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent form submission
         try{
 
             const {name, fav_lang, looking_for, role, user_id} = userInfo;
 
-            const createProfile = await fetch("http://localhost:3000/", {
+            const createProfile = await fetch("http://localhost:3000/profile/", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -36,20 +40,17 @@ function UserProfile() {
                 body: JSON.stringify({ name, fav_lang, looking_for, role, user_id }),
               });
 
-            if(!createProfile.ok) {
+                if(!createProfile.ok) {
                 console.log('Error creating profile:', error);
                 throw new Error("Error creating profile");
             }
-
-
         } catch(error) {
             throw new Error("Profile is not completed");
         }
+
     };
 
-
     const [uploadImage, setUploadImage] = useState(null);
-    // const [saveClicked, setSavedClicked] = useState(false);
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -71,15 +72,18 @@ function UserProfile() {
     return(
         <div id='navBarContainer'>
             <NavBar />
+            <form>
             <div id="userName">
                 <div >
                     <label>Name: </label>
                     <input
-                    type='text'
+                    // type='text'
                     name='name'
-                    value={userInfo.firstName}
-                    onChange={handleChange }
-                    ></input>
+                    // value={userInfo.name}
+                    onChange={(e) => handleChange(e, userInfo.name)}
+                    > 
+                    {/* {userInfo.name} */}
+                    </input>
                 </div>
             </div>
 
@@ -87,12 +91,14 @@ function UserProfile() {
                 <div >
                     <label>Fav. Lang: </label>
                     <textarea
-                    type='text'
-                    id='fav_lang'
+                    // type='text'
+                    // id='fav_lang'
                     name='fav_lang'
-                    value={userInfo.fav_lang}
-                    onChange={handleChange }
-                    ></textarea>
+                    // value={userInfo.fav_lang}
+                    onChange={(e) => handleChange(e, userInfo.fav_lang)}
+                    > 
+                    {/* {userInfo.fav_lang} */}
+                    </textarea>
                 </div>
             </div>
 
@@ -100,27 +106,35 @@ function UserProfile() {
                 <label>Looking For: </label>
                 <div >
                     <textarea
-                    type='text'
-                    id='looking_for'
+                    // type='text'
+                    // id='looking_for'
                     name='looking_for'
-                    value={userInfo.looking_for}
-                    onChange={handleChange }
-                    ></textarea>
+                    // value={userInfo.looking_for}
+                    onChange={(e) => handleChange(e, userInfo.looking_for)}
+                    > 
+                    {/* {userInfo.looking_for} */}
+                    </textarea>
                 </div>
             </div>
 
             <div id="userRole">
                  <label>Role: </label>
-                <div >
+                 <div >
                     <textarea
-                    type='text'
-                    id='role'
+                    // type='text'
+                    // id='role'
                     name='role'
-                    value={userInfo.role}
-                    onChange={handleChange }
-                    ></textarea>
+                    // value={userInfo.role}
+                    onChange={(e) => handleChange(e, userInfo.role)}
+                    > 
+                    {/* {userInfo.role} */}
+                    </textarea>
                 </div>
             </div>
+            <div id="profileSave">
+            <button type="submit" onSubmit={handleSubmit}> Save </button>
+            </div>
+            </form>
 
             <div id="avatarEdit">
                 <input type="file" onChange={handleImageUpload} />
@@ -138,7 +152,7 @@ function UserProfile() {
                 />}
             </div>
             <div id="save">
-                 <button onClick={editAvatar}>Save</button><br/>
+                <button type="submit" onClick={editAvatar}> Save </button><br/>
             </div>
         </div>
     )

@@ -274,3 +274,9 @@ Profile
   top: 15px;
   left: 250px;
 }
+
+#profileSave {
+  position:fixed;
+  bottom: 150px;
+  right: 250px;
+}
